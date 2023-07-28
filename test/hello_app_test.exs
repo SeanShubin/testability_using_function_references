@@ -96,14 +96,6 @@ defmodule HelloAppTest do
   end
 
   def loop(state)do
-    %{
-      :command_line_arguments => ["configuration.txt"],
-      :remaining_monotonic_time_values => [1000, 1234],
-      :file_contents_by_name => %{
-        "configuration.txt" => "world"
-      },
-      :lines_emitted => []
-    }
     receive do
       {:get_lines_emitted, caller} ->
         send(caller, Enum.reverse(state.lines_emitted))
